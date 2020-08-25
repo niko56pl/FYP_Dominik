@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Query Form</title>
+</head>
+
+<body>
+	{% block content %}
+	<h2>DoneDeal Average Price Checker</h2>
+	<p></p>
+	<p>Please fill the details below:</p>
+
+	<form action="/data/" method="get">{% csrf_token %}
+		
+		{{  FormSite.as_p }}
+		
+		{% comment %}
+				<!-- *model -->
+				<div class="fieldWrapper">
+					{{ FormSite.MAKE.errors }}
+					<label for="id_MAKE">Make</label>
+					{{ FormSite.MAKE }}
+				</div>
+				<!-- *model -->
+				<div class="fieldWrapper">
+					{{ FormSite.MODEL.errors }}
+					<label for="id_MODEL">Model</label>
+					{{ FormSite.MODEL }}
+				</div>
+				<!-- *entered -->
+				<div class="fieldWrapper">
+					{{ FormSite.ENTERED.errors }}
+					<label for="id_ENTERED">Entered WHY IS THIS TWICE</label>
+					{{ FormSite.ENTERED }}
+				</div>
+		{% endcomment %}
+		<button type="submit">
+			<i class="fa fa-thumb-tack"></i> Query
+		</button>
+	</form>
+	{% endblock %}
+</body>

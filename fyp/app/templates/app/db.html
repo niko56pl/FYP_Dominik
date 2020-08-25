@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Result</title>
+</head>
+
+<body>
+	{% load widget_tweaks %}
+	
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+		
+	<table class="table table-bordered" border="1" cellspacing="0" cellpadding="5">
+		<thead>
+			<tr>
+				<th>Make</th>
+				<th>Model</th>
+				<th>Year</th>
+				<th>Liter</th>
+				<th>Fuel</th>
+				<th>Price</th>
+				<th>Entered</th>
+			</tr>
+		</thead>
+		{% for Average in query_results %}
+		<tbody>
+			<tr>
+				<td bgcolor="#F0F0F0">{{ Average.make }}</td>
+				<td bgcolor="#F0F0F0">{{ Average.model }}</td>
+				<td>{{ Average.year }}</td>
+				<td>{{ Average.liter }}</td>
+				<td>{{ Average.fuel }}</td>
+				<td bgcolor="#F0F0F0">{{ Average.price }}</td>
+				<td>{{ Average.entered }}</td>
+			</tr>
+		</tbody>
+		{% endfor %}
+		
+	</table>
+	
+	<p>{{ avg_price }}</p>
+	<p>Number of entries: {{ totalno_prices }} </p>
+	<p>{{ max_price }} </p>
+	<p>{{ min_price }} </p>
+	<p>{{ difference_price }} </p>
+	
+	{% autoescape off %}
+	{{ plot_div }}
+	{% endautoescape %}
+	
+	<!-- <img src="data:image/png;base64,{{ data }}" alt="", height="250", width="250" -->
+	<!-- <p>{{ past_avg }} </p> -->
+
+	
+</body>
